@@ -5,11 +5,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class GUI {
-    public JPanel panelMain;
-    private JButton buttonmsg;
+    private JPanel panelMain;
+    private JButton button;
 
-    public GUI() {
-        buttonmsg.addActionListener(new ActionListener() {
+    public void GUIstart(GUI gui){
+        JFrame jframe = new JFrame("Fractal Tree");
+        jframe.setContentPane(gui.panelMain);
+        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jframe.pack();
+        jframe.setVisible(true);
+    }
+
+    public GUI(){
+        button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("lal");
