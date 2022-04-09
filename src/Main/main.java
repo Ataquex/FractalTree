@@ -2,7 +2,6 @@ package Main;
 
 import Controller.Controller;
 import GUI.GUI;
-import javax.swing.*;
 
 public class main{
 
