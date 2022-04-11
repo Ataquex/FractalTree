@@ -1,7 +1,5 @@
 package GUI;
 
-import com.sun.tools.javac.Main;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -21,7 +19,7 @@ public class GUI {
     }
 
     //INITIALIZE GUI
-    public void GUIstart(GUI gui){
+    public void GUIstart(){
         initializeGUIObjects();
 
         //JFRAME PROPERTIES
@@ -32,7 +30,7 @@ public class GUI {
     //JPANEL PROPERTIES
 
         //MAINPANEL PROPERTIES
-        MainPanel.setBackground(Color.decode("#433f54"));;
+        MainPanel.setBackground(Color.decode("#433f54"));
         MainPanel.setLayout(null);
 
         //CANVASPANEL PROPERTIES
@@ -84,20 +82,15 @@ public class GUI {
         jframe.setVisible(true);
     }
 
+    //INSTANTIATE GUI OBJECTS
     private void initializeGUIObjects(){
         //JFRAME
-        JFrame jframe = new JFrame("Fractal Tree");
-        this.jframe = jframe;
+        this.jframe = new JFrame("Fractal Tree");
 
         //JPANEL
-        JPanel MainPanel = new JPanel();
-        this.MainPanel = MainPanel;
-
-        JPanel CanvasPanel = new JPanel();
-        this.CanvasPanel = CanvasPanel;
-
-        JPanel SliderPanel = new JPanel();
-        this.SliderPanel = SliderPanel;
+        this.MainPanel = new JPanel();
+        this.CanvasPanel = new JPanel();
+        this.SliderPanel = new JPanel();
 
         //JLABEL TREE PROPERTIES OPTIONS
         JLabel[] LabelArrayTreeProperties = new JLabel[7];
