@@ -11,6 +11,5 @@ public class Controller {
 
     public void startController(){
         this.controllersGUI.GUIstart(controllersGUI);
-
     }
 }
