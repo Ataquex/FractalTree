@@ -7,9 +7,13 @@ import java.awt.event.ActionListener;
 
 public class GUI {
     private JPanel panelMain;
-    private JButton button;
-    private JSlider slider1;
 
+    //CONSTRUCTOR
+    public GUI(){
+
+    }
+
+    //INITIALIZE GUI
     public void GUIstart(GUI gui){
         JFrame jframe = new JFrame("Fractal Tree");
 
@@ -20,18 +24,9 @@ public class GUI {
         jframe.setSize(1200,800);
 
         //JPANEL PROPERTIES
-        panelMain.setBackground(Color.decode("#201e29"));
+        //panelMain.setBackground(Color.decode("#201e29"));
         panelMain.setSize(500, 500);
 
         jframe.setVisible(true);
-    }
-
-    public GUI(){
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println(panelMain.getComponents());
-            }
-        });
     }
 }
