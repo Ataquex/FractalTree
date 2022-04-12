@@ -1,5 +1,6 @@
 package GUI;
 
+import LineBuilder.LineBuilder;
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,6 +13,7 @@ public class GUI {
     private JSlider[] SliderArrayTreeProperties;
     private JSeparator[] SeparatorArrayTreeProperties1;
     private JSeparator[] SeparatorArrayTreeProperties2;
+    private LineBuilder LineBuilder;
 
     //CONSTRUCTOR
     public GUI(){
@@ -19,7 +21,8 @@ public class GUI {
     }
 
     //INITIALIZE GUI
-    public void GUIstart(){
+    public void GUIstart(LineBuilder lineBuilder){
+        this.LineBuilder = lineBuilder;
         initializeGUIObjects();
 
         //JFRAME PROPERTIES
@@ -36,6 +39,7 @@ public class GUI {
         //CANVASPANEL PROPERTIES
         CanvasPanel.setBounds(0,0,741,jframe.getHeight());
         CanvasPanel.setBackground(Color.decode("#201e29"));
+        CanvasPanel.setLayout(new BorderLayout());
 
         //SLIDERPANEL PROPERTIES
         SliderPanel.setBounds(745,0,458,jframe.getHeight());
@@ -45,14 +49,16 @@ public class GUI {
         jframe.setContentPane(MainPanel);
         MainPanel.add(CanvasPanel);
         MainPanel.add(SliderPanel);
+        CanvasPanel.add(this.LineBuilder);
 
+        //JLABEL TEXT
         LabelArrayTreeProperties[0].setText("First branches length");
         LabelArrayTreeProperties[1].setText("Branch length scaling");
         LabelArrayTreeProperties[2].setText("Number of branches in a node");
-        LabelArrayTreeProperties[3].setText("angle between branches in a node");
-        LabelArrayTreeProperties[4].setText("angle between mother branch and daughter branch");
-        LabelArrayTreeProperties[5].setText("limit of realization");
-        LabelArrayTreeProperties[6].setText("randomness");
+        LabelArrayTreeProperties[3].setText("Angle between branches in a node");
+        LabelArrayTreeProperties[4].setText("Angle between mother branch and daughter branch");
+        LabelArrayTreeProperties[5].setText("Limit of realization");
+        LabelArrayTreeProperties[6].setText("Randomness");
         for(int i=0; i<7; i++){
             //SLIDER PROPERTIES
             SliderArrayTreeProperties[i].setPreferredSize(new Dimension(400, 25));
@@ -84,6 +90,9 @@ public class GUI {
 
     //INSTANTIATE GUI OBJECTS
     private void initializeGUIObjects(){
+        //LINEBUILDER
+        this.LineBuilder = new LineBuilder();
+
         //JFRAME
         this.jframe = new JFrame("Fractal Tree");
 
