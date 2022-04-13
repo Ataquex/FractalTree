@@ -29,6 +29,27 @@ public class GUI {
         this.controller = controller;
         this.LineBuilder = lineBuilder;
 
+        //JLABEL PROPERTIES
+        //TEXT ARRAY
+        String[] TextArray = new String[]{
+                "First branches length: ",
+                "Branch length scaling: 0.",
+                "Number of branches in a node: ",
+                "Angle between branches in a node: ",
+                "Angle between mother branch and daughter branch: ",
+                "Limit of realization: ",
+                "Randomness: "
+        };
+
+        //JSLIDER PROPERTIES
+        //TICKSPACING ARRAY
+        int[] minortickspacing = new int[]{50,25,1,45,45,1,1};
+        int[] majortickspacing = new int[]{100,100,5,90,90,5,5};
+        //MIN MAX ARRAY
+        int[] min = new int[]{1,1,1,0,0,1,0};
+        int[] max = new int[]{300,200,10,360,360,20,10};
+
+        //TREE PROPERTIES
         int[] TreeProperties = new int[7];
         this.TreeProperties = TreeProperties;
 
@@ -38,6 +59,7 @@ public class GUI {
         ChangeListener sliderListener = e -> {
             for(int i=0; i<7; i++){
                 this.TreeProperties[i] = SliderArrayTreeProperties[i].getValue();
+                LabelArrayTreeProperties[i].setText(TextArray[i]+SliderArrayTreeProperties[i].getValue());
             }
             this.controller.ChangePerformed(this.TreeProperties);
         };
@@ -68,23 +90,6 @@ public class GUI {
         MainPanel.add(SliderPanel);
         CanvasPanel.add(this.LineBuilder);
 
-        //JLABEL TEXT
-        LabelArrayTreeProperties[0].setText("First branches length");
-        LabelArrayTreeProperties[1].setText("Branch length scaling");
-        LabelArrayTreeProperties[2].setText("Number of branches in a node");
-        LabelArrayTreeProperties[3].setText("Angle between branches in a node");
-        LabelArrayTreeProperties[4].setText("Angle between mother branch and daughter branch");
-        LabelArrayTreeProperties[5].setText("Limit of realization");
-        LabelArrayTreeProperties[6].setText("Randomness");
-
-        //SLIDER PROPERTIES MIN TO MAX
-        //TICKSPACING ARRAY
-        int[] minortickspacing = new int[]{50,25,1,45,45,1,1};
-        int[] majortickspacing = new int[]{100,100,5,90,90,5,5};
-        //MIN MAX ARRAY
-        int[] min = new int[]{1,1,1,0,0,1,0};
-        int[] max = new int[]{300,200,10,360,360,20,10};
-
         for(int i=0; i<7; i++){
             //SLIDER PROPERTIES
             SliderArrayTreeProperties[i].setPreferredSize(new Dimension(400, 25));
@@ -95,13 +100,13 @@ public class GUI {
             SliderArrayTreeProperties[i].setValue(SliderArrayTreeProperties[i].getMinimum());
             SliderArrayTreeProperties[i].setPaintTicks(true);
             SliderArrayTreeProperties[i].setPaintLabels(true);
-            SliderArrayTreeProperties[i].setSnapToTicks(true);
             SliderArrayTreeProperties[i].setMajorTickSpacing(majortickspacing[i]);
             SliderArrayTreeProperties[i].setMinorTickSpacing(minortickspacing[i]);
 
             //LABEL PROPERTIES
             LabelArrayTreeProperties[i].setForeground(Color.decode("#ffffff"));
             LabelArrayTreeProperties[i].setPreferredSize(new Dimension(400, 30));
+            LabelArrayTreeProperties[i].setText(TextArray[i]+SliderArrayTreeProperties[i].getValue());
 
             //SEPARATOR PROPERTIES
             if(i==1 || i==4 || i==5) {
