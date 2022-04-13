@@ -2,9 +2,12 @@ package GUI;
 
 import LineBuilder.LineBuilder;
 import javax.swing.*;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
+import Controller.Controller;
 
 public class GUI {
+    private Controller controller;
     private JFrame jframe;
     private JPanel MainPanel;
     private JPanel CanvasPanel;
@@ -14,6 +17,7 @@ public class GUI {
     private JSeparator[] SeparatorArrayTreeProperties1;
     private JSeparator[] SeparatorArrayTreeProperties2;
     private LineBuilder LineBuilder;
+    private int[] TreeProperties;
 
     //CONSTRUCTOR
     public GUI(){
@@ -21,9 +25,22 @@ public class GUI {
     }
 
     //INITIALIZE GUI
-    public void GUIstart(LineBuilder lineBuilder){
+    public void GUIstart(LineBuilder lineBuilder, Controller controller){
+        this.controller = controller;
         this.LineBuilder = lineBuilder;
+
+        int[] TreeProperties = new int[7];
+        this.TreeProperties = TreeProperties;
+
         initializeGUIObjects();
+
+        //CHANGELISTENER
+        ChangeListener sliderListener = e -> {
+            for(int i=0; i<7; i++){
+                this.TreeProperties[i] = SliderArrayTreeProperties[i].getValue();
+            }
+            this.controller.ChangePerformed(this.TreeProperties);
+        };
 
         //JFRAME PROPERTIES
         jframe.setResizable(false);
@@ -59,10 +76,28 @@ public class GUI {
         LabelArrayTreeProperties[4].setText("Angle between mother branch and daughter branch");
         LabelArrayTreeProperties[5].setText("Limit of realization");
         LabelArrayTreeProperties[6].setText("Randomness");
+
+        //SLIDER PROPERTIES MIN TO MAX
+        //TICKSPACING ARRAY
+        int[] minortickspacing = new int[]{50,25,1,45,45,1,1};
+        int[] majortickspacing = new int[]{100,100,5,90,90,5,5};
+        //MIN MAX ARRAY
+        int[] min = new int[]{1,1,1,0,0,1,0};
+        int[] max = new int[]{300,200,10,360,360,20,10};
+
         for(int i=0; i<7; i++){
             //SLIDER PROPERTIES
             SliderArrayTreeProperties[i].setPreferredSize(new Dimension(400, 25));
             SliderArrayTreeProperties[i].setBackground(Color.decode("#302d3d"));
+            SliderArrayTreeProperties[i].addChangeListener(sliderListener);
+            SliderArrayTreeProperties[i].setMaximum(max[i]);
+            SliderArrayTreeProperties[i].setMinimum(min[i]);
+            SliderArrayTreeProperties[i].setValue(SliderArrayTreeProperties[i].getMinimum());
+            SliderArrayTreeProperties[i].setPaintTicks(true);
+            SliderArrayTreeProperties[i].setPaintLabels(true);
+            SliderArrayTreeProperties[i].setSnapToTicks(true);
+            SliderArrayTreeProperties[i].setMajorTickSpacing(majortickspacing[i]);
+            SliderArrayTreeProperties[i].setMinorTickSpacing(minortickspacing[i]);
 
             //LABEL PROPERTIES
             LabelArrayTreeProperties[i].setForeground(Color.decode("#ffffff"));
@@ -134,5 +169,9 @@ public class GUI {
         5-limit of realization
         6-randomness (angles/length)
          */
+    }
+
+    public int[] getTreeProperties(){
+        return this.TreeProperties;
     }
 }
