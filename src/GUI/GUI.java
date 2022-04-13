@@ -50,8 +50,7 @@ public class GUI {
         int[] max = new int[]{300,200,10,360,360,20,10};
 
         //TREE PROPERTIES
-        int[] TreeProperties = new int[7];
-        this.TreeProperties = TreeProperties;
+        this.TreeProperties = new int[7];
 
         initializeGUIObjects();
 
@@ -174,9 +173,5 @@ public class GUI {
         5-limit of realization
         6-randomness (angles/length)
          */
-    }
-
-    public int[] getTreeProperties(){
-        return this.TreeProperties;
     }
 }
