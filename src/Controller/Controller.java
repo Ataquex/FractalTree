@@ -13,7 +13,7 @@ public class Controller {
     public Controller(){
         this.controllersGUI = new GUI();
         this.controllersModel = new Model();
-        this.controllersLineBuilder = new LineBuilder();
+        this.controllersLineBuilder = new LineBuilder(this.controllersModel);
     }
 
     public void startController(Controller controller){
@@ -21,7 +21,7 @@ public class Controller {
         this.controllersGUI.GUIstart(this.controllersLineBuilder, this.controller);
     }
 
-    public void ChangePerformed(int[] properties){
+    public void WriteToModel(int[] properties){
         this.controllersModel.setFirstBranchLength(properties[0]);
         this.controllersModel.setBranchLengthScaling(properties[1]);
         this.controllersModel.setNumberBranchesPerNode(properties[2]);
@@ -29,6 +29,9 @@ public class Controller {
         this.controllersModel.setAngleMotherToDaughterBranch(properties[4]);
         this.controllersModel.setRealizationLimit(properties[5]);
         this.controllersModel.setRandomness(properties[6]);
-        System.out.println("written to model");
+    }
+
+    public void ChangePerformed(){
+        this.controllersLineBuilder.DrawTree();
     }
 }

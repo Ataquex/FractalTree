@@ -19,11 +19,6 @@ public class GUI {
     private LineBuilder LineBuilder;
     private int[] TreeProperties;
 
-    //CONSTRUCTOR
-    public GUI(){
-
-    }
-
     //INITIALIZE GUI
     public void GUIstart(LineBuilder lineBuilder, Controller controller){
         this.controller = controller;
@@ -60,7 +55,8 @@ public class GUI {
                 this.TreeProperties[i] = SliderArrayTreeProperties[i].getValue();
                 LabelArrayTreeProperties[i].setText(TextArray[i]+SliderArrayTreeProperties[i].getValue());
             }
-            this.controller.ChangePerformed(this.TreeProperties);
+            this.controller.WriteToModel(this.TreeProperties);
+            this.controller.ChangePerformed();
         };
 
         //JFRAME PROPERTIES
@@ -129,8 +125,6 @@ public class GUI {
 
     //INSTANTIATE GUI OBJECTS
     private void initializeGUIObjects(){
-        //LINEBUILDER
-        this.LineBuilder = new LineBuilder();
 
         //JFRAME
         this.jframe = new JFrame("Fractal Tree");
