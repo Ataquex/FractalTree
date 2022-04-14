@@ -4,8 +4,8 @@ public class Model {
     private int FirstBranchLength = 100;
     private float BranchLengthScaling = (float)0.67;
     private int NumberBranchesPerNode = 2;
-    private int AngleBranchesPerNode = 120;
-    private int AngleMotherToDaughterBranch = 120;
+    private double AngleBranchesPerNode = 120;
+    private double AngleMotherToDaughterBranch = 120;
     private int RealizationLimit = 6;
     private int randomness = 0;
 
@@ -34,20 +34,24 @@ public class Model {
         NumberBranchesPerNode = numberBranchesPerNode;
     }
 
-    public float getAngleBranchesPerNode() {
+    public double getAngleBranchesPerNode() {
         return AngleBranchesPerNode;
     }
 
     public void setAngleBranchesPerNode(int angleBranchesPerNode) {
-        AngleBranchesPerNode = angleBranchesPerNode;
+        double angleBranchesPerNodef = angleBranchesPerNode;
+        angleBranchesPerNodef /= 180;
+        AngleBranchesPerNode = angleBranchesPerNodef;
     }
 
-    public float getAngleMotherToDaughterBranch() {
+    public double getAngleMotherToDaughterBranch() {
         return AngleMotherToDaughterBranch;
     }
 
     public void setAngleMotherToDaughterBranch(int angleMotherToDaughterBranch) {
-        AngleMotherToDaughterBranch = angleMotherToDaughterBranch;
+        double angleMotherToDaughterBranchf = angleMotherToDaughterBranch;
+        angleMotherToDaughterBranchf /= 180;
+        AngleMotherToDaughterBranch = angleMotherToDaughterBranchf;
     }
 
     public int getRealizationLimit() {

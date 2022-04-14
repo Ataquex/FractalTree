@@ -8,7 +8,6 @@ public class Controller {
     private GUI controllersGUI;
     private Model controllersModel;
     private LineBuilder controllersLineBuilder;
-    private Controller controller;
 
     public Controller(){
         this.controllersGUI = new GUI();
@@ -17,8 +16,7 @@ public class Controller {
     }
 
     public void startController(Controller controller){
-        this.controller = controller;
-        this.controllersGUI.GUIstart(this.controllersLineBuilder, this.controller);
+        this.controllersGUI.GUIstart(this.controllersLineBuilder, controller);
     }
 
     public void WriteToModel(int[] properties){
