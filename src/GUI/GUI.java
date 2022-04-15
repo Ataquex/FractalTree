@@ -28,7 +28,7 @@ public class GUI {
         //TEXT ARRAY
         String[] TextArray = new String[]{
                 "First branches length: ",
-                "Branch length scaling: 0.",
+                "Branch length scaling: ",
                 "Number of branches in a node: ",
                 "Angle between branches in a node: ",
                 "Angle between mother branch and daughter branch: ",

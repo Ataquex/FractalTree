@@ -29,15 +29,31 @@ public class LineBuilder extends JComponent {
         int RealizationLimit = this.model.getRealizationLimit();
         int randomness = this.model.getRandomness();
 
-        int x1 = 0, y1 = 0, x2 = 0, y2 = FirstBranchLength;
+        TreeRecursive(graphic, 0, 0, 0, FirstBranchLength, BranchLengthScaling, NumberBranchesPerNode, AngleBranchesPerNode, AngleMotherToDaughterBranch, RealizationLimit, randomness);
 
-        for(int i0 = 0; i0<RealizationLimit; i0++){
-                graphic.drawLine(x1, y1, x2, -y2);
+    }
 
-                graphic.translate(x2, -y2);
-                graphic.rotate(AngleBranchesPerNode * PI);
+    public void TreeRecursive(Graphics2D graphic, int x1, int y1, int x2, int y2, float scaling, int branchespernode, double anglenode, double anglemotherdaughter, int realization, int randomness){
+        graphic.drawLine(x1, y1, x2, -y2);
+        graphic.translate(x2, -y2);
 
-                y2 *= BranchLengthScaling;
+        realization--;
+        if(realization > 0){
+
+            double saveangle = anglemotherdaughter * PI - PI;
+
+            graphic.rotate(anglemotherdaughter * PI - PI);
+            TreeRecursive(graphic, x1, y1, x2, y2, scaling, branchespernode, anglenode, anglemotherdaughter, realization, randomness);
+            graphic.translate(0, y2);
+            graphic.rotate(-saveangle);
+
+
+            saveangle = anglemotherdaughter * PI - PI;
+
+            graphic.rotate(-anglemotherdaughter * PI - PI);
+            TreeRecursive(graphic, x1, y1, x2, y2, scaling, branchespernode, anglenode, anglemotherdaughter, realization, randomness);
+            graphic.translate(0, y2);
+            graphic.rotate(saveangle);
         }
     }
 
