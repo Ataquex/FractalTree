@@ -21,13 +21,13 @@ public class LineBuilder extends JComponent {
         graphic.setStroke(new BasicStroke(3));
         graphic.setColor(Color.decode("#ffffff"));
 
-        int FirstBranchLength = this.model.getFirstBranchLength();
-        float BranchLengthScaling = this.model.getBranchLengthScaling();
-        int NumberBranchesPerNode = this.model.getNumberBranchesPerNode();
-        double AngleBranchesPerNode = this.model.getAngleBranchesPerNode();
-        double AngleMotherToDaughterBranch = this.model.getAngleMotherToDaughterBranch();
-        int RealizationLimit = this.model.getRealizationLimit();
-        int randomness = this.model.getRandomness();
+        int FirstBranchLength = model.getFirstBranchLength();
+        float BranchLengthScaling = model.getBranchLengthScaling();
+        int NumberBranchesPerNode = model.getNumberBranchesPerNode();
+        double AngleBranchesPerNode = model.getAngleBranchesPerNode();
+        double AngleMotherToDaughterBranch = model.getAngleMotherToDaughterBranch();
+        int RealizationLimit = model.getRealizationLimit();
+        int randomness = model.getRandomness();
 
         TreeRecursive(graphic, 0, 0, 0, FirstBranchLength, BranchLengthScaling, NumberBranchesPerNode, AngleBranchesPerNode, AngleMotherToDaughterBranch, RealizationLimit, randomness);
 
@@ -43,16 +43,16 @@ public class LineBuilder extends JComponent {
             double saveangle = anglemotherdaughter * PI - PI;
 
             graphic.rotate(anglemotherdaughter * PI - PI);
-            TreeRecursive(graphic, x1, y1, x2, y2, scaling, branchespernode, anglenode, anglemotherdaughter, realization, randomness);
-            graphic.translate(0, y2);
+            TreeRecursive(graphic, x1, y1, x2, (int)(y2*scaling), scaling, branchespernode, anglenode, anglemotherdaughter, realization, randomness);
+            graphic.translate(0, (int)(y2*scaling));
             graphic.rotate(-saveangle);
 
 
             saveangle = anglemotherdaughter * PI - PI;
 
             graphic.rotate(-anglemotherdaughter * PI - PI);
-            TreeRecursive(graphic, x1, y1, x2, y2, scaling, branchespernode, anglenode, anglemotherdaughter, realization, randomness);
-            graphic.translate(0, y2);
+            TreeRecursive(graphic, x1, y1, x2, (int)(y2*scaling), scaling, branchespernode, anglenode, anglemotherdaughter, realization, randomness);
+            graphic.translate(0, (int)(y2*scaling));
             graphic.rotate(saveangle);
         }
     }
