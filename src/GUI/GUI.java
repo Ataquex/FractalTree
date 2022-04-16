@@ -40,9 +40,10 @@ public class GUI {
         //TICKSPACING ARRAY
         int[] minortickspacing = new int[]{50,25,1,45,45,1,1};
         int[] majortickspacing = new int[]{100,100,5,90,90,5,5};
-        //MIN MAX ARRAY
+        //MIN MAX VALUE ARRAY
         int[] min = new int[]{1,1,1,0,0,1,0};
         int[] max = new int[]{300,200,10,360,360,20,10};
+        int[] value = new int[]{100,67,2,120,120,7,0};
 
         //TREE PROPERTIES
         this.TreeProperties = new int[7];
@@ -92,7 +93,7 @@ public class GUI {
             SliderArrayTreeProperties[i].addChangeListener(sliderListener);
             SliderArrayTreeProperties[i].setMaximum(max[i]);
             SliderArrayTreeProperties[i].setMinimum(min[i]);
-            SliderArrayTreeProperties[i].setValue(SliderArrayTreeProperties[i].getMinimum());
+            SliderArrayTreeProperties[i].setValue(value[i]);
             SliderArrayTreeProperties[i].setPaintTicks(true);
             SliderArrayTreeProperties[i].setPaintLabels(true);
             SliderArrayTreeProperties[i].setMajorTickSpacing(majortickspacing[i]);
