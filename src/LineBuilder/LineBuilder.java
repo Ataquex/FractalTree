@@ -40,20 +40,15 @@ public class LineBuilder extends JComponent {
         realization--;
         if(realization > 0) {
 
-            double saveangle = anglemotherdaughter * PI - PI;
-            graphic.rotate(-anglemotherdaughter * PI - PI);
+            for(int i = 0; i < branchespernode; i++) {
 
-            TreeRecursive(graphic, x1, y1, x2, (int) (y2 * scaling), scaling, branchespernode, anglenode, anglemotherdaughter, realization, randomness);
-            graphic.translate(0, (int) (y2 * scaling));
-            graphic.rotate(saveangle);
+                double saveangle = (anglemotherdaughter * PI - PI) + (i * (anglenode * PI));
+                graphic.rotate(-((anglemotherdaughter * PI - PI) + (i * (anglenode * PI))));
 
-
-            saveangle =  (anglenode * PI - PI) + (anglemotherdaughter * PI);
-            graphic.rotate(-((anglenode * PI - PI) + (anglemotherdaughter * PI)));
-
-            TreeRecursive(graphic, x1, y1, x2, (int) (y2 * scaling), scaling, branchespernode, anglenode, anglemotherdaughter, realization, randomness);
-            graphic.translate(0, (int) (y2 * scaling));
-            graphic.rotate(saveangle);
+                TreeRecursive(graphic, x1, y1, x2, (int) (y2 * scaling), scaling, branchespernode, anglenode, anglemotherdaughter, realization, randomness);
+                graphic.translate(0, (int) (y2 * scaling));
+                graphic.rotate(saveangle);
+            }
         }
     }
 
