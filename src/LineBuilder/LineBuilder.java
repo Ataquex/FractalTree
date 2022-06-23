@@ -44,8 +44,13 @@ public class LineBuilder extends JComponent {
 
             for(int i = 0; i < branchespernode; i++) {
 
-                double randomfactorScaling = 1 + ((ThreadLocalRandom.current().nextDouble(0, 1 + randomness * 5) - (randomness * 3 / 2)) / 100);
-                double randomfactorAngle = 1 + ((ThreadLocalRandom.current().nextDouble(0, 1 + randomness * 5) - (randomness * 3 / 2)) / 100);
+                double randomfactorScaling = 1;
+                double randomfactorAngle = 1;
+
+                if(randomness > 0){
+                    randomfactorScaling = 1 + ((ThreadLocalRandom.current().nextDouble(0, 1 + randomness * 5) - (randomness * 3 / 2)) / 100);
+                    randomfactorAngle = 1 + ((ThreadLocalRandom.current().nextDouble(0, 1 + randomness * 5) - (randomness * 3 / 2)) / 100);
+                }
 
                 double saveangle = ((anglemotherdaughter * PI - PI) + (i * (anglenode * PI))) * randomfactorAngle;
                 graphic.rotate(-(((anglemotherdaughter * PI - PI) + (i * (anglenode * PI))) * randomfactorAngle));
