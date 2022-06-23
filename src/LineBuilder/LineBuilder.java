@@ -2,8 +2,10 @@ package LineBuilder;
 
 import javax.swing.*;
 import java.awt.*;
-import Model.Model;
+import java.util.concurrent.ThreadLocalRandom;
 import static java.lang.Math.PI;
+
+import Model.Model;
 
 public class LineBuilder extends JComponent {
     private final Model model;
@@ -42,11 +44,14 @@ public class LineBuilder extends JComponent {
 
             for(int i = 0; i < branchespernode; i++) {
 
-                double saveangle = (anglemotherdaughter * PI - PI) + (i * (anglenode * PI));
-                graphic.rotate(-((anglemotherdaughter * PI - PI) + (i * (anglenode * PI))));
+                double randomfactorScaling = 1 + ((ThreadLocalRandom.current().nextDouble(0, 1 + randomness * 5) - (randomness * 3 / 2)) / 100);
+                double randomfactorAngle = 1 + ((ThreadLocalRandom.current().nextDouble(0, 1 + randomness * 5) - (randomness * 3 / 2)) / 100);
 
-                TreeRecursive(graphic, x1, y1, x2, (int) (y2 * scaling), scaling, branchespernode, anglenode, anglemotherdaughter, realization, randomness);
-                graphic.translate(0, (int) (y2 * scaling));
+                double saveangle = ((anglemotherdaughter * PI - PI) + (i * (anglenode * PI))) * randomfactorAngle;
+                graphic.rotate(-(((anglemotherdaughter * PI - PI) + (i * (anglenode * PI))) * randomfactorAngle));
+
+                TreeRecursive(graphic, x1, y1, x2, (int) (y2 * (scaling * randomfactorScaling)), scaling, branchespernode, anglenode, anglemotherdaughter, realization, randomness);
+                graphic.translate(0, (int) (y2 * (scaling * randomfactorScaling)));
                 graphic.rotate(saveangle);
             }
         }
