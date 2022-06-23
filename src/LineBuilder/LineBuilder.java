@@ -6,7 +6,7 @@ import Model.Model;
 import static java.lang.Math.PI;
 
 public class LineBuilder extends JComponent {
-    private Model model;
+    private final Model model;
 
     public LineBuilder(Model model){
         this.model = model;
