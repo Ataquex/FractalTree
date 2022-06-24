@@ -18,11 +18,6 @@ public class LineBuilder extends JComponent {
     public void paintComponent(Graphics g){
         Graphics2D graphic = (Graphics2D) g;
 
-        //GRAPHIC PROPERTIES
-        graphic.translate(370, 600);
-        graphic.setStroke(new BasicStroke(3));
-        graphic.setColor(Color.decode("#ffffff"));
-
         int FirstBranchLength = model.getFirstBranchLength();
         float BranchLengthScaling = model.getBranchLengthScaling();
         int NumberBranchesPerNode = model.getNumberBranchesPerNode();
@@ -31,11 +26,17 @@ public class LineBuilder extends JComponent {
         int RealizationLimit = model.getRealizationLimit();
         int randomness = model.getRandomness();
 
-        TreeRecursive(graphic, 0, 0, 0, FirstBranchLength, BranchLengthScaling, NumberBranchesPerNode, AngleBranchesPerNode, AngleMotherToDaughterBranch, RealizationLimit, randomness);
+        //GRAPHIC PROPERTIES
+        graphic.translate(370, 600);
+        graphic.setStroke(new BasicStroke(RealizationLimit));
+        graphic.setColor(Color.decode("#ffffff"));
+
+        TreeRecursive(graphic, 0, 0, 0, FirstBranchLength, BranchLengthScaling, NumberBranchesPerNode, AngleBranchesPerNode, AngleMotherToDaughterBranch, RealizationLimit, randomness, RealizationLimit);
 
     }
 
-    public void TreeRecursive(Graphics2D graphic, int x1, int y1, int x2, int y2, float scaling, int branchespernode, double anglenode, double anglemotherdaughter, int realization, int randomness){
+    public void TreeRecursive(Graphics2D graphic, int x1, int y1, int x2, int y2, float scaling, int branchespernode, double anglenode, double anglemotherdaughter, int realization, int randomness, int strokewidth){
+        graphic.setStroke(new BasicStroke(strokewidth));
         graphic.drawLine(x1, y1, x2, -y2);
         graphic.translate(x2, -y2);
 
@@ -49,13 +50,13 @@ public class LineBuilder extends JComponent {
 
                 if(randomness > 0){
                     randomfactorScaling = 1 + ((ThreadLocalRandom.current().nextDouble(0, 1 + randomness * 5) - (randomness * 3 / 2)) / 100);
-                    randomfactorAngle = 1 + ((ThreadLocalRandom.current().nextDouble(0, 1 + randomness * 5) - (randomness * 3 / 2)) / 100);
+                    randomfactorAngle = 1 + ((ThreadLocalRandom.current().nextDouble(0, 1 + randomness * 10) - (randomness * 3 / 2)) / 100);
                 }
 
                 double saveangle = ((anglemotherdaughter * PI - PI) + (i * (anglenode * PI))) * randomfactorAngle;
                 graphic.rotate(-(((anglemotherdaughter * PI - PI) + (i * (anglenode * PI))) * randomfactorAngle));
 
-                TreeRecursive(graphic, x1, y1, x2, (int) (y2 * (scaling * randomfactorScaling)), scaling, branchespernode, anglenode, anglemotherdaughter, realization, randomness);
+                TreeRecursive(graphic, x1, y1, x2, (int) (y2 * (scaling * randomfactorScaling)), scaling, branchespernode, anglenode, anglemotherdaughter, realization, randomness, (strokewidth - 1));
                 graphic.translate(0, (int) (y2 * (scaling * randomfactorScaling)));
                 graphic.rotate(saveangle);
             }
