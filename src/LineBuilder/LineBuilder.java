@@ -6,7 +6,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import static java.lang.Math.PI;
 
 import Model.Model;
-import com.sun.source.tree.Tree;
 
 public class LineBuilder extends JComponent {
     private final Model model;
