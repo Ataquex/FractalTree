@@ -26,9 +26,23 @@ public class LineBuilder extends JComponent {
         int RealizationLimit = model.getRealizationLimit();
         int randomness = model.getRandomness();
         String[][] ColorList = new String[][]{
-                {"#00ff0d", "#00ccff", "#ffffff"},
-                {"#ff00e6"},
-                {"#ff00e6"}
+                {"#ff0000"},
+                {"#ff8000"},
+                {"#ffff00"},
+                {"#80ff00"},
+                {"#00ff00"},
+                {"#00ff80"},
+                {"#00ffff"},
+                {"#0080ff"},
+                {"#0000ff"},
+                {"#8000ff"},
+                {"#ff00ff"},
+                {"#ff0080"},
+                {"#ff0000"},
+                {"#ff8000"},
+                {"#ffff00"},
+                {"#80ff00"},
+                {"#00ff00"},
         };
 
         //GRAPHIC PROPERTIES
