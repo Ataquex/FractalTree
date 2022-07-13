@@ -3,9 +3,10 @@ package LineBuilder;
 import javax.swing.*;
 import java.awt.*;
 import java.util.concurrent.ThreadLocalRandom;
-import static java.lang.Math.PI;
 
 import Model.Model;
+
+import static java.lang.Math.*;
 
 public class LineBuilder extends JComponent {
     private final Model model;
@@ -75,10 +76,16 @@ public class LineBuilder extends JComponent {
         realization--;
         if(realization > 0){
 
-            for(int i = 0; i < branchespernode; i++) {
+            double randomfactorScaling = 1;
+            double randomfactorAngle = 1;
+            int randombranches = 0;
 
-                double randomfactorScaling = 1;
-                double randomfactorAngle = 1;
+            randombranches = (int) sqrt(log(ThreadLocalRandom.current().nextDouble(0, 1)) * (-(randomness * 0.1)));
+            if(ThreadLocalRandom.current().nextInt(0, 2) == 0){
+                randombranches *= (-1);
+            }
+
+            for(int i = 0; i < branchespernode + randombranches; i++) {
 
                 if(randomness > 0){
                     randomfactorScaling = 1 + ((ThreadLocalRandom.current().nextDouble(0, 1 + randomness * 5) - (randomness * 5 * 0.5)) / 100);
