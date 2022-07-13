@@ -81,8 +81,8 @@ public class LineBuilder extends JComponent {
                 double randomfactorAngle = 1;
 
                 if(randomness > 0){
-                    randomfactorScaling = 1 + ((ThreadLocalRandom.current().nextDouble(0, 1 + randomness * 5) - (randomness * 1.5)) / 100);
-                    randomfactorAngle = 1 + ((ThreadLocalRandom.current().nextDouble(0, 1 + randomness * 10) - (randomness * 1.5)) / 100);
+                    randomfactorScaling = 1 + ((ThreadLocalRandom.current().nextDouble(0, 1 + randomness * 5) - (randomness * 5 * 0.5)) / 100);
+                    randomfactorAngle = 1 + ((ThreadLocalRandom.current().nextDouble(0, 1 + randomness * 10) - (randomness * 10 * 0.5)) / 100);
                 }
 
                 double saveangle = ((anglemotherdaughter * PI - PI) + (i * (anglenode * PI))) * randomfactorAngle;
